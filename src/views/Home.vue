@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <section class="splash">test text</section>
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
