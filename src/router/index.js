@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import MyCareer from '../views/MyCareer.vue';
+import Search from '../views/Search.vue';
+import ProfileLibrary from '../views/ProfileLibrary.vue';
 
 Vue.use(VueRouter);
 
@@ -9,6 +12,21 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/my-career',
+    name: 'MyCareer',
+    component: MyCareer,
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: Search,
+  },
+  {
+    path: '/profile-library',
+    name: 'ProfileLibrary',
+    component: ProfileLibrary,
   },
   {
     path: '/about',
