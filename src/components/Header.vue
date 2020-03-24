@@ -25,5 +25,5 @@
   section { float: right; margin-right: 1em; }
   p { display: inline-block; padding: 1.2em; margin: 0; }
   p:hover { cursor: pointer; background-color: #abacb3; }
-  a:hover { text-decoration: none; size: 1.5em; }
+  a:hover { text-decoration: none; }
 </style>
