@@ -4,31 +4,39 @@
       <h1>My Career</h1>
       <form>
         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" placeholder="Name" id="name" class="form-control" />
+          <label for="firstName">First Name</label>
+          <input type="text" placeholder="Name" id="firstName" class="form-control"
+                 v-model="user.firstName" />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" placeholder="Name" id="lastName" class="form-control"
+                 v-model="user.lastName" />
         </div>
         <div class="form-group">
           <label for="dateOfBirth">Date of Birth</label>
-          <input type="text" placeholder="Date of Birth" id="dateOfBirth" class="form-control" />
+          <input type="text" placeholder="Date of Birth" id="dateOfBirth" class="form-control"
+          v-model="user.dateOfBirth"/>
         </div>
         <div class="form-group">
           <label for="company">Company</label>
-          <input type="text" placeholder="Company" id="company" class="form-control" />
+          <input type="text" placeholder="Company" id="company" class="form-control"
+                 v-model="job.company.name" />
           <small id="companyHelp" class="form-text text-muted">Where do you currently work?</small>
         </div>
         <div class="form-group">
           <label for="position">Position</label>
-          <input type="text" placeholder="Position" id="position" class="form-control" />
+          <input type="text" placeholder="Position" id="position" class="form-control"
+          v-model="job.position"/>
           <small id="positionHelp" class="form-text text-muted">
             e.g., Chief Puppy Officer, Vice President of Office Snacks
           </small>
         </div>
         <div class="form-group">
           <label for="industry">Industry</label>
-          <input type="text" placeholder="Industry" id="industry" class="form-control" />
-          <small id="industryHelp" class="form-text text-muted">
-            e.g., Healthcare, Technology, Energy
-          </small>
+          <select v-model="job.industry" id="industry">
+            <option v-for="industry in industries" :key="industry">{{ industry }}</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="college">College</label>
@@ -98,15 +106,19 @@
         </div>
         <div class="form-group">
           <label for="dreamCompany">Dream Company</label>
-          <input type="text" placeholder="Dream Company" id="dreamCompany" class="form-control" />
+          <input type="text" placeholder="Dream Company" id="dreamCompany" class="form-control"
+          v-model="dreamJob.company.name"/>
         </div>
         <div class="form-group">
           <label for="dreamPosition">Dream Position</label>
-          <input type="text" placeholder="Dream Position" id="dreamPosition" class="form-control" />
+          <input type="text" placeholder="Dream Position" id="dreamPosition" class="form-control"
+          v-model="dreamJob.position"/>
         </div>
         <div class="form-group">
           <label for="dreamIndustry">Dream Industry</label>
-          <input type="text" placeholder="Dream Industry" id="dreamIndustry" class="form-control" />
+          <select v-model="dreamJob.industry" id="dreamIndustry">
+              <option v-for="industry in industries" :key="industry">{{ industry }}</option>
+          </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
@@ -115,8 +127,44 @@
 </template>
 
 <script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      user: {
+        firstName: '',
+        lastName: '',
+        dateOfBirth: '',
+      },
+      job: {
+        position: '',
+        industry: '',
+        company: {
+          name: '',
+        },
+      },
+      dreamJob: {
+        position: '',
+        industry: '',
+        company: {
+          name: '',
+        },
+      },
+      industries: [],
+    };
+  },
+  created() {
+    axios.get('http://localhost:8081/api/v1/company/industries')
+      .then((res) => {
+        const { data } = res;
+        this.industries = data;
+      });
+  },
+};
 </script>
 
 <style>
   section.body { padding: 1.5em; }
+  section.body select { display: block; }
 </style>
