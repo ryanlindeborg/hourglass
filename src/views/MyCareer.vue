@@ -35,6 +35,7 @@
         <div class="form-group">
           <label for="industry">Industry</label>
           <select v-model="job.industry" id="industry">
+            <option></option>
             <option v-for="industry in industries" :key="industry">{{ industry }}</option>
           </select>
         </div>
@@ -69,6 +70,7 @@
         <div class="form-group">
           <label for="postGradDegree">Degree</label>
           <select v-model="postGradSchoolUser.degree" id="postGradDegree">
+            <option></option>
             <option v-for="degree in degrees" :key="degree">{{ degree }}</option>
           </select>
           <small id="degreeHelp" class="form-text text-muted">
@@ -120,6 +122,7 @@
         <div class="form-group">
           <label for="dreamIndustry">Dream Industry</label>
           <select v-model="dreamJob.industry" id="dreamIndustry">
+              <option></option>
               <option v-for="industry in industries" :key="industry">{{ industry }}</option>
           </select>
         </div>
