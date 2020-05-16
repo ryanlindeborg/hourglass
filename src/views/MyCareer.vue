@@ -126,7 +126,7 @@
               <option v-for="industry in industries" :key="industry">{{ industry }}</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Save</button>
       </form>
     </section>
   </div>
@@ -194,8 +194,7 @@ export default {
         postGradSchoolUser: this.postGradSchoolUser,
       };
 
-      // TODO: Add url to post to
-      axios.post('', formData)
+      axios.post('http://localhost:8081/api/v1/profile/user', formData)
         .then((res) => console.log(res))
         .catch((error) => console.log(error));
     },
