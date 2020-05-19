@@ -194,20 +194,20 @@ export default {
         postGradSchoolUser: this.postGradSchoolUser,
       };
 
-      axios.post('http://localhost:8081/api/v1/profile/user', formData)
+      axios.post(`${process.env.VUE_APP_BASE_SPRING_API_URL}/api/v1/profile/user`, formData)
         .then((res) => console.log(res))
         .catch((error) => console.log(error));
     },
   },
   created() {
     // Fetch list of industries from server-side app
-    axios.get('http://localhost:8081/api/v1/company/industries')
+    axios.get(`${process.env.VUE_APP_BASE_SPRING_API_URL}/api/v1/company/industries`)
       .then((res) => {
         const { data } = res;
         this.industries = data;
       });
     // Fetch list of degrees from server-side app
-    axios.get('http://localhost:8081/api/v1/schoolUser/degrees')
+    axios.get(`${process.env.VUE_APP_BASE_SPRING_API_URL}/api/v1/schoolUser/degrees`)
       .then((res) => {
         const { data } = res;
         this.degrees = data;
