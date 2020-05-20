@@ -139,40 +139,51 @@ export default {
   data() {
     return {
       user: {
+        id: null,
         firstName: '',
         lastName: '',
         dateOfBirth: '',
       },
-      job: {
+      currentJob: {
+        id: null,
         position: '',
         industry: '',
         company: {
+          id: null,
           name: '',
         },
       },
       firstPostCollegeJob: {
+        id: null,
         position: '',
         industry: '',
         company: {
+          id: null,
           name: '',
         },
       },
       dreamJob: {
+        id: null,
         position: '',
         industry: '',
         company: {
+          id: null,
           name: '',
         },
       },
       collegeSchoolUser: {
+        id: null,
         school: {
+          id: null,
           name: '',
         },
         endDate: '',
         fieldOfStudy: '',
       },
       postGradSchoolUser: {
+        id: null,
         school: {
+          id: null,
           name: '',
         },
         endDate: '',
@@ -187,7 +198,7 @@ export default {
     submitProfileInfo() {
       const formData = {
         user: this.user,
-        job: this.job,
+        currentJob: this.currentJob,
         firstPostCollegeJob: this.firstPostCollegeJob,
         dreamJob: this.dreamJob,
         collegeSchoolUser: this.collegeSchoolUser,
