@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import MyCareer from '../views/MyCareer.vue';
 import Search from '../views/Search.vue';
 import ProfileLibrary from '../views/ProfileLibrary.vue';
+import Profile from '../views/Profile.vue';
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,12 @@ const routes = [
     path: '/profile-library',
     name: 'ProfileLibrary',
     component: ProfileLibrary,
+  },
+  {
+    path: '/profile/:userId',
+    name: 'Profile',
+    component: Profile,
+    props: true,
   },
   {
     path: '/about',
