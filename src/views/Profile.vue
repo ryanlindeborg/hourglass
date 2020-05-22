@@ -14,60 +14,8 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      profileDetails: {
-        user: {
-          id: null,
-          firstName: '',
-          lastName: '',
-          dateOfBirth: '',
-        },
-        currentJob: {
-          id: null,
-          position: '',
-          industry: '',
-          company: {
-            id: null,
-            name: '',
-          },
-        },
-        firstPostCollegeJob: {
-          id: null,
-          position: '',
-          industry: '',
-          company: {
-            id: null,
-            name: '',
-          },
-        },
-        dreamJob: {
-          id: null,
-          position: '',
-          industry: '',
-          company: {
-            id: null,
-            name: '',
-          },
-        },
-        collegeSchoolUser: {
-          id: null,
-          school: {
-            id: null,
-            name: '',
-          },
-          endDate: '',
-          fieldOfStudy: '',
-        },
-        postGradSchoolUser: {
-          id: null,
-          school: {
-            id: null,
-            name: '',
-          },
-          endDate: '',
-          degree: '',
-          fieldOfStudy: '',
-        },
-      },
+      profileDetails: '',
+
     };
   },
   props: ['userId'],
@@ -76,9 +24,7 @@ export default {
     axios.get(`${process.env.VUE_APP_BASE_SPRING_API_URL}/api/v1/profile/user/${this.userId}`)
       .then((res) => {
         const { data } = res;
-        // TODO: Parse json response to save into Vue data fields
-        this.profileDetails.user.firstName = data.user.firstName;
-        this.profileDetails.user.lastName = data.user.lastName;
+        this.profileDetails = data;
       });
   },
 };
