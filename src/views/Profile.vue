@@ -8,11 +8,24 @@
         {{ profileDetails.currentJob.company.name }}</h2>
     </section>
     <section class="profile-details">
-      <section>
-        <h3>Current Job</h3>
-        <p>Company: {{ profileDetails.currentJob.company.name }}</p>
-        <p>Position: {{ profileDetails.currentJob.position }}</p>
-        <p>Industry: {{ profileDetails.currentJob.company.industry }}</p>
+      <section class="work-history">
+        <i class="fas fa-briefcase"></i>
+        <div>
+          <section>
+            <h3>Current Job</h3>
+            <p>Company: {{ profileDetails.currentJob.company.name }}</p>
+            <p>Position: {{ profileDetails.currentJob.position }}</p>
+            <p>Industry: {{ profileDetails.currentJob.company.industry }}</p>
+          </section>
+          <br/>
+          <section>
+            <h3>First Post-College Job</h3>
+            <p>Company: {{ profileDetails.firstPostCollegeJob.company.name }}</p>
+            <p>Position: {{ profileDetails.firstPostCollegeJob.position }}</p>
+            <p>Industry:
+              {{ profileDetails.firstPostCollegeJob.company.industry | parseIndustry }}</p>
+          </section>
+        </div>
       </section>
       <section class="education-history">
         <i class="fas fa-graduation-cap"></i>
@@ -23,6 +36,7 @@
             <p>Degree: {{ profileDetails.collegeSchoolUser.degree }}</p>
             <p>Field of Study: {{ profileDetails.collegeSchoolUser.fieldOfStudy }}</p>
           </section>
+          <br/>
           <h3>Postgraduate Education</h3>
           <section>
             <p>School: {{ profileDetails.postGradSchoolUser.school.name }}</p>
@@ -32,11 +46,13 @@
         </div>
       </section>
       <section class="dream">
-        <h3>Me in 10 Years</h3>
-        <h4>Dream Job</h4>
-        <p>Company: {{ profileDetails.dreamJob.company.name }}</p>
-        <p>Position: {{ profileDetails.dreamJob.position }}</p>
-        <p>Industry: {{ profileDetails.dreamJob.company.industry }}</p>
+        <i class="fas fa-hourglass"></i>
+        <div>
+          <h3>Dream Job</h3>
+          <p>Company: {{ profileDetails.dreamJob.company.name }}</p>
+          <p>Position: {{ profileDetails.dreamJob.position }}</p>
+          <p>Industry: {{ profileDetails.dreamJob.company.industry }}</p>
+        </div>
       </section>
     </section>
   </div>
@@ -58,6 +74,14 @@ export default {
         : `${this.profileDetails.user.firstName} ${this.profileDetails.user.lastName}`);
     },
   },
+  filters: {
+    parseIndustry(industry) {
+      //TODO: Have to use charAt(0).toUpperCase() then conacatenate with splice(1) to capitalize
+      // first letter
+      const splitWords = industry.toLowerCase().split('_');
+      return splitWords.join(' ').toUpperCase();
+    },
+  },
   props: ['userId'],
   created() {
     // Fetch profileDetails using userId param specified in the url
@@ -75,7 +99,8 @@ export default {
   section.splash img { border: 3px solid black; width: 20em; height: 20em; border-radius: 100%;
     float: right; margin: -1em 8% 0 0; }
   h1 { font-size: 3.5em; margin-bottom: 2%; }
-  section.profile-details { background-color: #F5F9FA; }
-  section.education-history div { float: right; }
-  i { color: #4390C5; font-size: 3em; }
+  section.profile-details { background-color: #F5F9FA; padding: 2em 0; }
+  section.education-history, section.work-history, section.dream { margin: 4vw; }
+  section.education-history div, section.work-history div, section.dream div { padding-left: 40%; }
+  i { color: #4390C5; font-size: 8em; padding-left: 4vw; float: left; }
 </style>
