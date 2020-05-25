@@ -15,7 +15,7 @@
             <h3>Current Job</h3>
             <p>Company: {{ profileDetails.currentJob.company.name }}</p>
             <p>Position: {{ profileDetails.currentJob.position }}</p>
-            <p>Industry: {{ profileDetails.currentJob.company.industry }}</p>
+            <p>Industry: {{ profileDetails.currentJob.company.industry | parseIndustry }}</p>
           </section>
           <br/>
           <section>
@@ -51,7 +51,7 @@
           <h3>Dream Job</h3>
           <p>Company: {{ profileDetails.dreamJob.company.name }}</p>
           <p>Position: {{ profileDetails.dreamJob.position }}</p>
-          <p>Industry: {{ profileDetails.dreamJob.company.industry }}</p>
+          <p>Industry: {{ profileDetails.dreamJob.company.industry | parseIndustry }}</p>
         </div>
       </section>
     </section>
@@ -76,10 +76,14 @@ export default {
   },
   filters: {
     parseIndustry(industry) {
-      //TODO: Have to use charAt(0).toUpperCase() then conacatenate with splice(1) to capitalize
-      // first letter
+      // Split words by underscore delimiter
       const splitWords = industry.toLowerCase().split('_');
-      return splitWords.join(' ').toUpperCase();
+      const capitalizedWords = [];
+      splitWords.forEach((word) => {
+        // Add capitalized word to array
+        capitalizedWords.push(word.charAt(0).toUpperCase() + word.slice(1));
+      });
+      return capitalizedWords.join(' ');
     },
   },
   props: ['userId'],
