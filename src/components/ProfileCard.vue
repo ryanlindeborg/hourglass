@@ -31,7 +31,7 @@ export default {
 <style scoped>
   div.profile-card { display: inline-block; border-radius: 10%; }
   div.profile-card img { width: 240px; height: 240px; border-radius: 10% 10% 0 0; }
-  div.profile-card div { width: 240px; padding: 1em; background-color: #F5F5F7;
+  div.profile-card div { width: 240px; height: 125px; padding: 1em; background-color: #F5F5F7;
     border-radius: 0 0 10% 10%; }
   div.profile-card p { font-weight: 700; }
   div.profile-card p:first-of-type { font-size: 1.3em; margin-bottom: 0.5em; }

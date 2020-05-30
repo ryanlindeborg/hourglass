@@ -1,9 +1,11 @@
 <template>
   <section class="profile-library">
     <h1>Profile Library</h1>
-    <section v-for="profilePreview in profilePreviews" :key="profilePreview.user.id">
-      <ProfileCard :profile-preview="profilePreview" class="profile-card-container" />
-    </section>
+    <div>
+      <section v-for="profilePreview in profilePreviews" :key="profilePreview.user.id">
+        <ProfileCard :profile-preview="profilePreview" class="profile-card-container" />
+      </section>
+    </div>
   </section>
 </template>
 
@@ -32,5 +34,8 @@ export default {
 <style scoped>
   section.profile-library { margin: 4vw; }
   section.profile-library h1 { margin-bottom: 1em; }
+  section.profile-library div { display: flex; justify-content: center; flex-wrap: wrap; }
+  section.profile-library section { display: inline-block; vertical-align: top; }
+  .profile-card-container { margin: 1em; }
   .profile-card-container:hover { cursor: pointer; display: inline-block; }
 </style>

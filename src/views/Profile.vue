@@ -12,7 +12,7 @@
     </section>
     <section class="profile-details">
       <p v-if="!profileDetails">Looks like we don't have profile details on this user!</p>
-      <section class="work-history">
+      <section class="work-history" v-if="isWorkHistoryPresent">
         <i class="fas fa-briefcase"></i>
         <div>
           <section v-if="profileDetails.currentJob">
@@ -37,7 +37,7 @@
           </section>
         </div>
       </section>
-      <section class="education-history">
+      <section class="education-history" v-if="isEducationHistoryPresent">
         <i class="fas fa-graduation-cap"></i>
         <div>
           <section v-if="profileDetails.collegeSchoolUser">
@@ -61,7 +61,7 @@
           </section>
         </div>
       </section>
-      <section class="dream">
+      <section class="dream" v-if="profileDetails.dreamJob">
         <i class="fas fa-hourglass"></i>
         <div>
           <section v-if="profileDetails.dreamJob">
@@ -95,6 +95,12 @@ export default {
       return (this.profileDetails.user == null ? null
         : `${this.profileDetails.user.firstName} ${this.profileDetails.user.lastName}`);
     },
+    isWorkHistoryPresent() {
+      return this.profileDetails.currentJob || this.profileDetails.firstPostCollegeJob;
+    },
+    isEducationHistoryPresent() {
+      return this.profileDetails.collegeSchoolUser || this.profileDetails.postGradSchoolUser;
+    },
   },
   filters: {
     parseIndustry(industry) {
@@ -127,7 +133,8 @@ export default {
   h1 { font-size: 3.5em; margin-bottom: 2%; }
   section.profile-details { background-color: #F5F9FA; padding: 2em 0; }
   section.education-history, section.work-history, section.dream { margin: 4vw; }
-  section.education-history div, section.work-history div, section.dream div { padding-left: 40%; }
+  section.education-history > div, section.work-history > div,
+  section.dream > div { padding-left: 40%; }
   section.education-history section:hover i.edit, section.work-history section:hover i.edit,
   section.dream section:hover i.edit { visibility: visible; }
   section.splash div.edit-container:hover i.edit { visibility: visible; }
