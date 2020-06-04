@@ -6,6 +6,7 @@
         <router-link to="/my-career" tag="p">My Career</router-link>
         <router-link to="/search" tag="p">Search</router-link>
         <router-link to="/profile-library" tag="p">Profile Library</router-link>
+        <router-link to="/login" tag="p">Login</router-link>
       </section>
     </nav>
   </div>

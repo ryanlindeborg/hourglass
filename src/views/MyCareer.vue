@@ -21,20 +21,20 @@
         <div class="form-group">
           <label for="company">Company</label>
           <input type="text" placeholder="Company" id="company" class="form-control"
-                 v-model="job.company.name" />
+                 v-model="currentJob.company.name" />
           <small id="companyHelp" class="form-text text-muted">Where do you currently work?</small>
         </div>
         <div class="form-group">
           <label for="position">Position</label>
           <input type="text" placeholder="Position" id="position" class="form-control"
-          v-model="job.position"/>
+          v-model="currentJob.position"/>
           <small id="positionHelp" class="form-text text-muted">
             e.g., Chief Puppy Officer, Vice President of Office Snacks
           </small>
         </div>
         <div class="form-group">
           <label for="industry">Industry</label>
-          <select v-model="job.industry" id="industry">
+          <select v-model="currentJob.industry" id="industry">
             <option></option>
             <option v-for="industry in industries" :key="industry">{{ industry }}</option>
           </select>
@@ -227,7 +227,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
   section.body { padding: 1.5em; }
   section.body select { display: block; }
 </style>
