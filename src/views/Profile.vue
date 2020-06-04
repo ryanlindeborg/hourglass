@@ -114,10 +114,10 @@ export default {
       return capitalizedWords.join(' ');
     },
   },
-  props: ['userId'],
+  props: ['displayName'],
   created() {
-    // Fetch profileDetails using userId param specified in the url
-    axios.get(`${process.env.VUE_APP_BASE_SPRING_API_URL}/api/v1/profile/user/${this.userId}`)
+    // Fetch profileDetails using displayName param specified in the url
+    axios.get(`${process.env.VUE_APP_BASE_SPRING_API_URL}/api/v1/profile/user/${this.displayName}`)
       .then((res) => {
         const { data } = res;
         this.profileDetails = data;

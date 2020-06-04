@@ -43,7 +43,7 @@ const routes = [
     component: ProfileLibrary,
   },
   {
-    path: '/profile/:userId',
+    path: '/profile/:displayName',
     name: 'Profile',
     component: Profile,
     props: true,
