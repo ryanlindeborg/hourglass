@@ -5,8 +5,8 @@
       <img src="/images/RL-headshot-square.png" :alt="userFullName" />
       <h1>Hourglass Profile: {{ userFullName }}</h1>
       <div class="edit-container">
-        <h2 v-if="profileDetails.currentJob">{{ profileDetails.currentJob.position }} at
-          {{ profileDetails.currentJob.company.name }}</h2>
+        <h2 v-if="profileDetails.currentJobJson">{{ profileDetails.currentJobJson.position }} at
+          {{ profileDetails.currentJobJson.companyJson.name }}</h2>
         <i class="fas fa-pen edit" v-if="isEditable"></i>
       </div>
     </section>
@@ -15,63 +15,64 @@
       <section class="work-history" v-if="isWorkHistoryPresent">
         <i class="fas fa-briefcase"></i>
         <div>
-          <section v-if="profileDetails.currentJob">
+          <section v-if="profileDetails.currentJobJson">
             <div class="edit-container">
               <h3>Current Job</h3>
               <i class="fas fa-pen edit" v-if="isEditable"></i>
             </div>
-            <p>Company: {{ profileDetails.currentJob.company.name }}</p>
-            <p>Position: {{ profileDetails.currentJob.position }}</p>
-            <p>Industry: {{ profileDetails.currentJob.company.industry | parseIndustry }}</p>
+            <p>Company: {{ profileDetails.currentJobJson.companyJson.name }}</p>
+            <p>Position: {{ profileDetails.currentJobJson.position }}</p>
+            <p>Industry: {{ profileDetails.currentJobJson.companyJson.industry | parseIndustry }}
+            </p>
           </section>
           <br/>
-          <section v-if="profileDetails.firstPostCollegeJob">
+          <section v-if="profileDetails.firstPostCollegeJobJson">
             <div class="edit-container">
               <h3>First Post-College Job</h3>
               <i class="fas fa-pen edit" v-if="isEditable"></i>
             </div>
-            <p>Company: {{ profileDetails.firstPostCollegeJob.company.name }}</p>
-            <p>Position: {{ profileDetails.firstPostCollegeJob.position }}</p>
+            <p>Company: {{ profileDetails.firstPostCollegeJobJson.companyJson.name }}</p>
+            <p>Position: {{ profileDetails.firstPostCollegeJobJson.position }}</p>
             <p>Industry:
-              {{ profileDetails.firstPostCollegeJob.company.industry | parseIndustry }}</p>
+              {{ profileDetails.firstPostCollegeJobJson.companyJson.industry | parseIndustry }}</p>
           </section>
         </div>
       </section>
       <section class="education-history" v-if="isEducationHistoryPresent">
         <i class="fas fa-graduation-cap"></i>
         <div>
-          <section v-if="profileDetails.collegeSchoolUser">
+          <section v-if="profileDetails.collegeSchoolUserJson">
             <div class="edit-container">
               <h3>College</h3>
               <i class="fas fa-pen edit" v-if="isEditable"></i>
             </div>
-            <p>School: {{ profileDetails.collegeSchoolUser.school.name }}</p>
-            <p>Degree: {{ profileDetails.collegeSchoolUser.degree }}</p>
-            <p>Field of Study: {{ profileDetails.collegeSchoolUser.fieldOfStudy }}</p>
+            <p>School: {{ profileDetails.collegeSchoolUserJson.schoolJson.name }}</p>
+            <p>Degree: {{ profileDetails.collegeSchoolUserJson.degree }}</p>
+            <p>Field of Study: {{ profileDetails.collegeSchoolUserJson.fieldOfStudy }}</p>
           </section>
           <br/>
-          <section v-if="profileDetails.postGradSchoolUser">
+          <section v-if="profileDetails.postGradSchoolUserJson">
             <div class="edit-container">
               <h3>Postgraduate Education</h3>
               <i class="fas fa-pen edit" v-if="isEditable"></i>
             </div>
-            <p>School: {{ profileDetails.postGradSchoolUser.school.name }}</p>
-            <p>Degree: {{ profileDetails.postGradSchoolUser.degree }}</p>
-            <p>Field of Study: {{ profileDetails.postGradSchoolUser.fieldOfStudy }}</p>
+            <p>School: {{ profileDetails.postGradSchoolUserJson.schoolJson.name }}</p>
+            <p>Degree: {{ profileDetails.postGradSchoolUserJson.degree }}</p>
+            <p>Field of Study: {{ profileDetails.postGradSchoolUserJson.fieldOfStudy }}</p>
           </section>
         </div>
       </section>
-      <section class="dream" v-if="profileDetails.dreamJob">
+      <section class="dream" v-if="profileDetails.dreamJobJson">
         <i class="fas fa-hourglass"></i>
         <div>
-          <section v-if="profileDetails.dreamJob">
+          <section v-if="profileDetails.dreamJobJson">
             <div class="edit-container">
               <h3>Dream Job</h3>
               <i class="fas fa-pen edit" v-if="isEditable"></i>
             </div>
-            <p>Company: {{ profileDetails.dreamJob.company.name }}</p>
-            <p>Position: {{ profileDetails.dreamJob.position }}</p>
-            <p>Industry: {{ profileDetails.dreamJob.company.industry | parseIndustry }}</p>
+            <p>Company: {{ profileDetails.dreamJobJson.companyJson.name }}</p>
+            <p>Position: {{ profileDetails.dreamJobJson.position }}</p>
+            <p>Industry: {{ profileDetails.dreamJobJson.companyJson.industry | parseIndustry }}</p>
           </section>
         </div>
       </section>
@@ -92,14 +93,15 @@ export default {
   },
   computed: {
     userFullName() {
-      return (this.profileDetails.user == null ? null
-        : `${this.profileDetails.user.firstName} ${this.profileDetails.user.lastName}`);
+      return (this.profileDetails.userJson == null ? null
+        : `${this.profileDetails.userJson.firstName} ${this.profileDetails.userJson.lastName}`);
     },
     isWorkHistoryPresent() {
-      return this.profileDetails.currentJob || this.profileDetails.firstPostCollegeJob;
+      return this.profileDetails.currentJobJson || this.profileDetails.firstPostCollegeJobJson;
     },
     isEducationHistoryPresent() {
-      return this.profileDetails.collegeSchoolUser || this.profileDetails.postGradSchoolUser;
+      return this.profileDetails.collegeSchoolUserJson
+        || this.profileDetails.postGradSchoolUserJson;
     },
   },
   filters: {
