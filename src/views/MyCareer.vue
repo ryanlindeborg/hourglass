@@ -110,6 +110,14 @@
           </small>
         </div>
         <div class="form-group">
+          <label for="industryOfFirstCompanyPostCollege">
+            Industry of First Company Post-College</label>
+          <select v-model="firstPostCollegeJobJson.industry" id="industryOfFirstCompanyPostCollege">
+            <option></option>
+            <option v-for="industry in industries" :key="industry">{{ industry }}</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="dreamCompany">Dream Company</label>
           <input type="text" placeholder="Dream Company" id="dreamCompany" class="form-control"
           v-model="dreamJobJson.companyJson.name" />

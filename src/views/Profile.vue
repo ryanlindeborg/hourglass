@@ -22,8 +22,7 @@
             </div>
             <p>Company: {{ profileDetails.currentJobJson.companyJson.name }}</p>
             <p>Position: {{ profileDetails.currentJobJson.position }}</p>
-            <p>Industry: {{ profileDetails.currentJobJson.companyJson.industry | parseIndustry }}
-            </p>
+            <p>Industry: {{ profileDetails.currentJobJson.companyJson.industry }}</p>
           </section>
           <br/>
           <section v-if="profileDetails.firstPostCollegeJobJson">
@@ -34,7 +33,7 @@
             <p>Company: {{ profileDetails.firstPostCollegeJobJson.companyJson.name }}</p>
             <p>Position: {{ profileDetails.firstPostCollegeJobJson.position }}</p>
             <p>Industry:
-              {{ profileDetails.firstPostCollegeJobJson.companyJson.industry | parseIndustry }}</p>
+              {{ profileDetails.firstPostCollegeJobJson.companyJson.industry }}</p>
           </section>
         </div>
       </section>
@@ -72,7 +71,7 @@
             </div>
             <p>Company: {{ profileDetails.dreamJobJson.companyJson.name }}</p>
             <p>Position: {{ profileDetails.dreamJobJson.position }}</p>
-            <p>Industry: {{ profileDetails.dreamJobJson.companyJson.industry | parseIndustry }}</p>
+            <p>Industry: {{ profileDetails.dreamJobJson.companyJson.industry }}</p>
           </section>
         </div>
       </section>
@@ -102,18 +101,6 @@ export default {
     isEducationHistoryPresent() {
       return this.profileDetails.collegeSchoolUserJson
         || this.profileDetails.postGradSchoolUserJson;
-    },
-  },
-  filters: {
-    parseIndustry(industry) {
-      // Split words by underscore delimiter
-      const splitWords = industry.toLowerCase().split('_');
-      const capitalizedWords = [];
-      splitWords.forEach((word) => {
-        // Add capitalized word to array
-        capitalizedWords.push(word.charAt(0).toUpperCase() + word.slice(1));
-      });
-      return capitalizedWords.join(' ');
     },
   },
   props: ['displayName'],
