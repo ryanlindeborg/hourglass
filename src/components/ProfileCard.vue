@@ -1,12 +1,12 @@
 <template>
   <div>
-    <router-link :to="{ name: 'Profile', params: { displayName: profilePreview.user.displayName }}"
-                 tag="div" class="profile-card">
+    <router-link :to="{ name: 'Profile',
+    params: { displayName: profilePreview.userJson.displayName }}" tag="div" class="profile-card">
       <img :src="imageSquareUrl" :alt="userFullName" />
       <div>
-        <p>{{ profilePreview.user.firstName }} {{ profilePreview.user.lastName }}</p>
-        <p>{{ profilePreview.currentJob.position }},
-          {{ profilePreview.currentJob.company.name }}</p>
+        <p>{{ profilePreview.userJson.firstName }} {{ profilePreview.userJson.lastName }}</p>
+        <p>{{ profilePreview.currentJobJson.position }},
+          {{ profilePreview.currentJobJson.companyJson.name }}</p>
       </div>
     </router-link>
   </div>
@@ -17,12 +17,12 @@ export default {
   props: ['profilePreview'],
   computed: {
     userFullName() {
-      return (this.profilePreview.user == null ? null
-        : `${this.profilePreview.user.firstName} ${this.profilePreview.user.lastName}`);
+      return (this.profilePreview.userJson == null ? null
+        : `${this.profilePreview.userJson.firstName} ${this.profilePreview.userJson.lastName}`);
     },
     imageSquareUrl() {
-      return (this.profilePreview.user == null ? null
-        : `/images/user/${this.profilePreview.user.imageSquareName}.png`);
+      return (this.profilePreview.userJson == null ? null
+        : `/images/user/${this.profilePreview.userJson.imageSquareName}.png`);
     },
   },
 };

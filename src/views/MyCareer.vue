@@ -151,6 +151,7 @@ export default {
         firstName: '',
         lastName: '',
         dateOfBirth: '',
+        imageSquareName: '',
       },
       currentJobJson: {
         id: null,

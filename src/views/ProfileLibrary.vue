@@ -2,7 +2,7 @@
   <section class="profile-library">
     <h1>Profile Library</h1>
     <div>
-      <section v-for="profilePreview in profilePreviews" :key="profilePreview.user.id">
+      <section v-for="profilePreview in profilePreviews" :key="profilePreview.userJson.id">
         <ProfileCard :profile-preview="profilePreview" class="profile-card-container" />
       </section>
     </div>
