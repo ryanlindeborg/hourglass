@@ -3,19 +3,35 @@
     <nav>
       <router-link to="/"><img src="/images/timeline-logo.png" alt="Timeline" /></router-link>
       <section>
-        <router-link to="/my-career" tag="p">My Career</router-link>
-        <router-link to="/search" tag="p">Search</router-link>
         <router-link to="/profile-library" tag="p">Profile Library</router-link>
-        <router-link to="/login" tag="p">Login</router-link>
+        <router-link to="/search" tag="p">Search</router-link>
+        <div v-if="!displayName">
+          <router-link to="/login" tag="p">Login</router-link>
+        </div>
+        <div v-else>
+          <router-link to="/my-career" tag="p">My Career</router-link>
+          <router-link :to="{ name: 'SimilarProfiles', params: { displayName: loginDisplayName }}"
+                       tag="p">Similar Profiles</router-link>
+          <router-link to="/login" tag="p">Logout</router-link>
+        </div>
       </section>
     </nav>
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      loginDisplayName: '',
+    };
+  },
+};
+</script>
 
 <style scoped>
   nav { background-color: #C2C3CC; height: 4em; }
+  nav div { display: inline-block; }
   img { display: inline-block; margin: 0.3em; height: 80%; }
   section { float: right; margin-right: 1em; }
   p { color: #007bff; display: inline-block; padding: 1.2em; margin: 0; }

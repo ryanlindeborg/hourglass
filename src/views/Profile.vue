@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p></p>
     <section class="splash">
       <img src="/images/RL-headshot-square.png" :alt="userFullName" />
       <h1>Hourglass Profile: {{ userFullName }}</h1>

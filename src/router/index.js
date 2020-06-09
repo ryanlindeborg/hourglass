@@ -5,6 +5,7 @@ import MyCareer from '../views/MyCareer.vue';
 import Search from '../views/Search.vue';
 import ProfileLibrary from '../views/ProfileLibrary.vue';
 import Profile from '../views/Profile.vue';
+import SimilarProfiles from '../views/SimilarProfiles.vue';
 import PageNotFound from '../components/PageNotFound.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
@@ -47,6 +48,11 @@ const routes = [
     name: 'Profile',
     component: Profile,
     props: true,
+  },
+  {
+    path: '/similar-profiles/:displayName',
+    name: 'SimilarProfiles',
+    component: SimilarProfiles,
   },
   {
     path: '/about',
