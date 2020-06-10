@@ -11,7 +11,7 @@
 
 <script>
 import axios from 'axios';
-import ProfileCard from '../components/ProfileCard.vue';
+import ProfileCard from '../../components/profile/ProfileCard.vue';
 
 export default {
   components: { ProfileCard },

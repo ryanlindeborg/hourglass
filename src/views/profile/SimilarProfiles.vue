@@ -11,7 +11,7 @@
 
 <script>
 import axios from 'axios';
-import SimilarProfileCard from '../components/SimilarProfileCard.vue';
+import SimilarProfileCard from '../../components/profile/SimilarProfileCard.vue';
 
 export default {
   components: { SimilarProfileCard },

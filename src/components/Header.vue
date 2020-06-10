@@ -5,7 +5,7 @@
       <section>
         <router-link to="/profile-library" tag="p">Profile Library</router-link>
         <router-link to="/search" tag="p">Search</router-link>
-        <div v-if="!displayName">
+        <div v-if="!loginDisplayName">
           <router-link to="/login" tag="p">Login</router-link>
         </div>
         <div v-else>
