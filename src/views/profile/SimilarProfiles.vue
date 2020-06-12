@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import apiClient from '../../services/apiClient';
 import SimilarProfileCard from '../../components/profile/SimilarProfileCard.vue';
 
 export default {
@@ -23,7 +23,7 @@ export default {
   props: ['displayName'],
   created() {
     // Fetch similar profiles to pass in as props
-    axios.get(`${process.env.VUE_APP_BASE_SPRING_API_URL}/api/v1/profile/similar-profiles/${this.displayName}`)
+    apiClient.get(`/profile/similar-profiles/${this.displayName}`)
       .then((res) => {
         const { data } = res;
         this.similarProfiles = data;

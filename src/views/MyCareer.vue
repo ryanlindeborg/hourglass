@@ -141,7 +141,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import apiClient from '../services/apiClient';
 
 export default {
   data() {
@@ -214,20 +214,20 @@ export default {
         postGradSchoolUserJson: this.postGradSchoolUserJson,
       };
 
-      axios.post(`${process.env.VUE_APP_BASE_SPRING_API_URL}/api/v1/profile/user`, formData)
+      apiClient.post('/profile/user', formData)
         .then((res) => console.log(res))
         .catch((error) => console.log(error));
     },
   },
   created() {
     // Fetch list of industries from server-side app
-    axios.get(`${process.env.VUE_APP_BASE_SPRING_API_URL}/api/v1/company/industries`)
+    apiClient.get('/company/industries')
       .then((res) => {
         const { data } = res;
         this.industries = data;
       });
     // Fetch list of degrees from server-side app
-    axios.get(`${process.env.VUE_APP_BASE_SPRING_API_URL}/api/v1/schoolUser/degrees`)
+    apiClient.get('/schoolUser/degrees')
       .then((res) => {
         const { data } = res;
         this.degrees = data;

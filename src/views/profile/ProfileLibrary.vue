@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import apiClient from '../../services/apiClient';
 import ProfileCard from '../../components/profile/ProfileCard.vue';
 
 export default {
@@ -22,7 +22,7 @@ export default {
   },
   created() {
     // Fetch profile previews to pass in as props
-    axios.get(`${process.env.VUE_APP_BASE_SPRING_API_URL}/api/v1/profile/previews`)
+    apiClient.get('/profile/previews')
       .then((res) => {
         const { data } = res;
         this.profilePreviews = data;

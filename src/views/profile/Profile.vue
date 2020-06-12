@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import apiClient from '../../services/apiClient';
 
 export default {
   data() {
@@ -105,7 +105,7 @@ export default {
   props: ['displayName'],
   created() {
     // Fetch profileDetails using displayName param specified in the url
-    axios.get(`${process.env.VUE_APP_BASE_SPRING_API_URL}/api/v1/profile/user/${this.displayName}`)
+    apiClient.get(`/profile/user/${this.displayName}`)
       .then((res) => {
         const { data } = res;
         this.profileDetails = data;
