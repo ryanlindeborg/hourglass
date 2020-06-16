@@ -9,12 +9,12 @@
             <div class="form-group">
               <label for="loginName">Username or Email</label>
               <input type="text" placeholder="Username or Email" id="loginName" class="form-control"
-                     v-model="loginName"/>
+                     v-model="loginDetails.loginName"/>
             </div>
             <div class="form-group">
               <label for="lastName">Password</label>
               <input type="text" placeholder="Name" id="lastName" class="form-control"
-                     v-model="password" />
+                     v-model="loginDetails.password" />
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
           </form>
@@ -28,13 +28,16 @@
 export default {
   data() {
     return {
-      loginName: '',
-      password: '',
+      loginDetails: {
+        loginName: '',
+        password: '',
+      },
     };
   },
   methods: {
     login() {
-      return null;
+      // TODO: Have to save JWT to Vuex store
+      this.$store.dispatch('login', this.loginDetails);
     },
   },
 };

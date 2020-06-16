@@ -2,36 +2,41 @@
   <div>
     <section class="body">
       <h1>Register</h1>
-      <form @submit.prevent="register">
+      <form @submit.prevent="registerUser">
         <div class="form-group">
           <label for="firstName">First Name</label>
           <input type="text" placeholder="Name" id="firstName" class="form-control"
-                 v-model="firstName" />
+                 v-model="registrationDetails.firstName" />
         </div>
         <div class="form-group">
           <label for="lastName">Last Name</label>
           <input type="text" placeholder="Name" id="lastName" class="form-control"
-                 v-model="lastName" />
+                 v-model="registrationDetails.lastName" />
         </div>
         <div class="form-group">
           <label for="email">Email</label>
           <input type="text" placeholder="Email" id="email" class="form-control"
-                 v-model="email"/>
+                 v-model="registrationDetails.email"/>
         </div>
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" placeholder="Username" id="username" class="form-control"
-                 v-model="username"/>
+                 v-model="registrationDetails.username"/>
+        </div>
+        <div class="form-group">
+          <label for="displayName">Profile Handle</label>
+          <input type="text" placeholder="Profile Handle" id="displayName" class="form-control"
+                 v-model="registrationDetails.displayName"/>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
           <input type="text" placeholder="Name" id="password" class="form-control"
-                 v-model="password" />
+                 v-model="registrationDetails.password" />
         </div>
         <div class="form-group">
           <label for="lastName">Confirm Password</label>
           <input type="text" placeholder="Confirm Password" id="repeatPassword" class="form-control"
-                 v-model="repeatPassword" />
+                 v-model="registrationDetails.repeatPassword" />
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
       </form>
@@ -43,17 +48,20 @@
 export default {
   data() {
     return {
-      firstName: '',
-      lastName: '',
-      email: '',
-      username: '',
-      password: '',
-      repeatPassword: '',
+      registrationDetails: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        username: '',
+        displayName: '',
+        password: '',
+        repeatPassword: '',
+      },
     };
   },
   methods: {
-    register() {
-      return null;
+    registerUser() {
+      this.$store.dispatch('registerUser', this.registrationDetails);
     },
   },
 };
