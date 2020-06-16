@@ -9,20 +9,25 @@ export default new Vuex.Store({
   state: {
     authenticationToken: null,
   },
+  getters: {
+    authenticationToken: (state) => state.authenticationToken,
+  },
   mutations: {
-    persistAuthenticationToken: (state) => {
-      state.authenticationToken = null;
+    persistAuthenticationToken: (state, token) => {
+      state.authenticationToken = token;
     },
   },
   actions: {
-    registerUser({commit}, registrationDetails) {
+    registerUser({ commit }, registrationDetails) {
       apiClient.post('/user/registration', registrationDetails)
         .then((res) => console.log(res))
         .catch((error) => console.log(error));
     },
-    login({commit}, loginDetails) {
+    login({ commit }, loginDetails) {
       apiClient.post('/user/session', loginDetails)
-        .then((res) => console.log(res))
+        .then((res) => {
+          commit('persistAuthenticationToken', res.data.authenticationToken.token);
+        })
         .catch((error) => console.log(error));
     },
   },

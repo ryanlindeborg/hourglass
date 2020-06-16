@@ -10,6 +10,8 @@ import PageNotFound from '../components/PageNotFound.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 
+import store from '../store/store';
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -32,27 +34,62 @@ const routes = [
     path: '/my-career',
     name: 'MyCareer',
     component: MyCareer,
+    beforeEnter(to, from, next) {
+      if (store.getters.authenticationToken) {
+        next();
+      } else {
+        next('/login');
+      }
+    },
   },
   {
     path: '/search',
     name: 'Search',
     component: Search,
+    beforeEnter(to, from, next) {
+      if (store.getters.authenticationToken) {
+        next();
+      } else {
+        next('/login');
+      }
+    },
   },
   {
     path: '/profile-library',
     name: 'ProfileLibrary',
     component: ProfileLibrary,
+    beforeEnter(to, from, next) {
+      if (store.getters.authenticationToken) {
+        next();
+      } else {
+        next('/login');
+      }
+    },
   },
   {
     path: '/profile/:displayName',
     name: 'Profile',
     component: Profile,
     props: true,
+    beforeEnter(to, from, next) {
+      if (store.getters.authenticationToken) {
+        next();
+      } else {
+        next('/login');
+      }
+    },
   },
   {
     path: '/similar-profiles/:displayName',
     name: 'SimilarProfiles',
     component: SimilarProfiles,
+    beforeEnter(to, from, next) {
+      if (store.getters.authenticationToken) {
+        next();
+      } else {
+        next('/login');
+      }
+    },
   },
   {
     path: '/about',

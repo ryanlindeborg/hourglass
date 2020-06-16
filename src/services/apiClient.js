@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from '../store/store';
 
 class ApiClient {
   constructor() {
@@ -11,14 +12,27 @@ class ApiClient {
     }
   }
 
+  static getRequestConfig() {
+    return {
+      headers: ApiClient.getRequestHeaders(),
+    };
+  }
+
+  static getRequestHeaders() {
+    // Set JWT authentication header
+    return { 'X-Auth-Token': store.getters.authenticationToken };
+  }
+
   get(endpoint) {
     ApiClient.validateEndpoint(endpoint);
-    return axios.get(this.apiBaseUrl + endpoint);
+    this.setRequestConfig();
+    return axios.get(this.apiBaseUrl + endpoint, ApiClient.getRequestConfig());
   }
 
   post(endpoint, data) {
     ApiClient.validateEndpoint(endpoint);
-    return axios.post(this.apiBaseUrl + endpoint, data);
+    this.setRequestConfig();
+    return axios.post(this.apiBaseUrl + endpoint, data, ApiClient.getRequestConfig());
   }
 }
 
