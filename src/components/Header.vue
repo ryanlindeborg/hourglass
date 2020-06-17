@@ -5,12 +5,12 @@
       <section>
         <router-link to="/profile-library" tag="p">Profile Library</router-link>
         <router-link to="/search" tag="p">Search</router-link>
-        <div v-if="!loginDisplayName">
+        <div v-if="!isAuthenticated">
           <router-link to="/login" tag="p">Login</router-link>
         </div>
         <div v-else>
           <router-link to="/my-career" tag="p">My Career</router-link>
-          <router-link :to="{ name: 'SimilarProfiles', params: { displayName: loginDisplayName }}"
+          <router-link :to="{ name: 'SimilarProfiles', params: { displayName: userDisplayName }}"
                        tag="p">Similar Profiles</router-link>
           <router-link to="/login" tag="p">Logout</router-link>
         </div>
@@ -21,10 +21,18 @@
 
 <script>
 export default {
-  data() {
-    return {
-      loginDisplayName: '',
-    };
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated;
+    },
+    userDisplayName() {
+      return this.$store.getters.userDisplayName;
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout');
+    },
   },
 };
 </script>
