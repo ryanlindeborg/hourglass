@@ -26,7 +26,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    registerUser({ commit }, registrationDetails) {
+    registerUser(registrationDetails) {
       apiClient.post('/user/registration', registrationDetails)
         .then((res) => console.log(res))
         .catch((error) => console.log(error));
@@ -41,7 +41,7 @@ export default new Vuex.Store({
     logout({ commit }) {
       commit('clearUserSessionData');
       router.replace({ name: 'Home' });
-      //TODO: Invalidate JWT token
+      // TODO: Invalidate JWT token
     },
   },
   modules: {
