@@ -13,11 +13,12 @@
           <input type="text" placeholder="Name" id="lastName" class="form-control"
                  v-model="registrationDetails.lastName" />
         </div>
-        <div class="form-group">
+        <div class="form-group" :class="{ invalid: $v.registrationDetails.email.$error }">
           <label for="email">Email</label>
           <input type="text" placeholder="Email" id="email" class="form-control"
-                 @input="$v.registrationDetails.email.touch()"
                  v-model="registrationDetails.email"/>
+          <p v-if="!$v.registrationDetails.email.required">Email is required</p>
+          <p v-if="!$v.registrationDetails.email.email">This is not a valid email address</p>
         </div>
         <div class="form-group">
           <label for="username">Username</label>
@@ -29,24 +30,30 @@
           <input type="text" placeholder="Profile Handle" id="displayName" class="form-control"
                  v-model="registrationDetails.displayName"/>
         </div>
-        <div class="form-group">
+        <div class="form-group" :class="{ invalid: $v.registrationDetails.password.$error }">
           <label for="password">Password</label>
           <input type="text" placeholder="Name" id="password" class="form-control"
                  v-model="registrationDetails.password" />
+          <p v-if="!$v.registrationDetails.password.minLength">
+            Password must be at least {{ $v.registrationDetails.password.$params.minLength.min }}
+            characters long</p>
         </div>
-        <div class="form-group">
+        <div class="form-group" :class="{ invalid: $v.registrationDetails.repeatPassword.$error }">
           <label for="lastName">Confirm Password</label>
           <input type="text" placeholder="Confirm Password" id="repeatPassword" class="form-control"
                  v-model="registrationDetails.repeatPassword" />
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
+        <p v-if="$v.error">Oops, try fixing the errors and submitting again!</p>
       </form>
     </section>
   </div>
 </template>
 
 <script>
-import { required, email } from 'vuelidate/lib/validators';
+import {
+  required, email, minLength, sameAs,
+} from 'vuelidate/lib/validators';
 
 export default {
   data() {
@@ -64,15 +71,43 @@ export default {
   },
   validations: {
     registrationDetails: {
+      firstName: {
+        required,
+      },
+      lastName: {
+        required,
+      },
       email: {
         required,
         email,
+      },
+      username: {
+        required,
+      },
+      displayName: {
+        required,
+      },
+      password: {
+        required,
+        minLength: minLength(8),
+      },
+      repeatPassword: {
+        required,
+        sameAs: sameAs('registrationDetails.repeatPassword'),
       },
     },
   },
   methods: {
     registerUser() {
-      this.$store.dispatch('registerUser', this.registrationDetails);
+      if (this.isInputValid()) {
+        this.$store.dispatch('registerUser', this.registrationDetails);
+      }
+    },
+    isInputValid() {
+      $v.registrationDetails.email.touch();
+      $v.registrationDetails.password.touch();
+      $v.registrationDetails.repeatPassword.touch();
+      return true;
     },
   },
 };
@@ -80,4 +115,5 @@ export default {
 
 <style scoped>
   section.body { padding: 1.5em; }
+  .invalid { border: 2px solid red; }
 </style>
