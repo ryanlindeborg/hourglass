@@ -40,7 +40,8 @@ export default new Vuex.Store({
     },
     logout({ commit }) {
       commit('clearUserSessionData');
-      router.replace('/login');
+      router.replace({ name: 'Home' });
+      //TODO: Invalidate JWT token
     },
   },
   modules: {

@@ -38,7 +38,7 @@ const routes = [
       if (store.getters.isAuthenticated) {
         next();
       } else {
-        next('/login');
+        next({ name: 'Login' });
       }
     },
   },
@@ -50,7 +50,7 @@ const routes = [
       if (store.getters.isAuthenticated) {
         next();
       } else {
-        next('/login');
+        next({ name: 'Login' }));
       }
     },
   },
@@ -62,7 +62,7 @@ const routes = [
       if (store.getters.isAuthenticated) {
         next();
       } else {
-        next('/login');
+        next({ name: 'Login' }));
       }
     },
   },
@@ -75,7 +75,7 @@ const routes = [
       if (store.getters.isAuthenticated) {
         next();
       } else {
-        next('/login');
+        next({ name: 'Login' }));
       }
     },
   },
@@ -87,7 +87,7 @@ const routes = [
       if (store.getters.isAuthenticated) {
         next();
       } else {
-        next('/login');
+        next({ name: 'Login' }));
       }
     },
   },
@@ -114,6 +114,18 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    // If user navigates back to page, maintains scroll
+    if (savedPosition) {
+      return savedPosition;
+    }
+    // Scroll down to element id
+    if (to.hash) {
+      return { selector: to.hash };
+    }
+    // Otherwise displays top of page
+    return { x: 0, y: 0 };
+  },
 });
 
 export default router;
