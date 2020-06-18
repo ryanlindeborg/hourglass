@@ -16,6 +16,7 @@
         <div class="form-group">
           <label for="email">Email</label>
           <input type="text" placeholder="Email" id="email" class="form-control"
+                 @input="$v.registrationDetails.email.touch()"
                  v-model="registrationDetails.email"/>
         </div>
         <div class="form-group">
@@ -45,6 +46,8 @@
 </template>
 
 <script>
+import { required, email } from 'vuelidate/lib/validators';
+
 export default {
   data() {
     return {
@@ -58,6 +61,14 @@ export default {
         repeatPassword: '',
       },
     };
+  },
+  validations: {
+    registrationDetails: {
+      email: {
+        required,
+        email,
+      },
+    },
   },
   methods: {
     registerUser() {
