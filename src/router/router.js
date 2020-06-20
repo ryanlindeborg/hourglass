@@ -33,7 +33,7 @@ const routes = [
     name: 'MyCareer',
     component: MyCareer,
     beforeEnter(to, from, next) {
-      if (this.$store.getters.isAuthenticated) {
+      if (this.$store.state.isLoggedIn) {
         next();
       } else {
         next({ name: 'Login' });
@@ -45,7 +45,7 @@ const routes = [
     name: 'Search',
     component: Search,
     beforeEnter(to, from, next) {
-      if (this.$store.getters.isAuthenticated) {
+      if (this.$store.state.isLoggedIn) {
         next();
       } else {
         next({ name: 'Login' });
@@ -57,7 +57,7 @@ const routes = [
     name: 'ProfileLibrary',
     component: ProfileLibrary,
     beforeEnter(to, from, next) {
-      if (this.$store.getters.isAuthenticated) {
+      if (this.$store.state.isLoggedIn) {
         next();
       } else {
         next({ name: 'Login' });
@@ -70,7 +70,7 @@ const routes = [
     component: Profile,
     props: true,
     beforeEnter(to, from, next) {
-      if (this.$store.getters.isAuthenticated) {
+      if (this.$store.state.isLoggedIn) {
         next();
       } else {
         next({ name: 'Login' });
@@ -82,7 +82,7 @@ const routes = [
     name: 'SimilarProfiles',
     component: SimilarProfiles,
     beforeEnter(to, from, next) {
-      if (this.$store.getters.isAuthenticated) {
+      if (this.$store.state.isLoggedIn) {
         next();
       } else {
         next({ name: 'Login' });

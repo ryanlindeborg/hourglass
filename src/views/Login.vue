@@ -36,8 +36,9 @@ export default {
   },
   methods: {
     login() {
-      // TODO: Have to save JWT to Vuex store
-      this.$store.dispatch('login', this.loginDetails);
+      // TODO: Better error display to user upon failed login request
+      this.$store.dispatch('login', this.loginDetails)
+        .catch((error) => console.log(error));
     },
   },
 };

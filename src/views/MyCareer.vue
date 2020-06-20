@@ -142,26 +142,13 @@
 
 <script>
 import apiClient from '../services/apiClient';
+import { currentJob, user } from '../services/defaultObjects';
 
 export default {
   data() {
     return {
-      userJson: {
-        id: null,
-        firstName: '',
-        lastName: '',
-        dateOfBirth: '',
-        imageSquareName: '',
-      },
-      currentJobJson: {
-        id: null,
-        position: '',
-        industry: '',
-        companyJson: {
-          id: null,
-          name: '',
-        },
-      },
+      userJson: user,
+      currentJobJson: currentJob,
       firstPostCollegeJobJson: {
         id: null,
         position: '',

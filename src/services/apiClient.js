@@ -1,9 +1,9 @@
 import axios from 'axios';
-import store from '../store/store';
 
 class ApiClient {
   constructor() {
     this.apiBaseUrl = `${process.env.VUE_APP_BASE_SPRING_API_URL}/api/v1`;
+    this.authenticationToken = null;
   }
 
   static validateEndpoint(endpoint) {
@@ -18,9 +18,13 @@ class ApiClient {
     };
   }
 
-  static getRequestHeaders() {
+  setAuthenticationToken(token) {
+    this.authenticationToken = token;
+  }
+
+  getRequestHeaders() {
     // Set JWT authentication header
-    return { 'X-Auth-Token': store.getters.authenticationToken };
+    return { 'X-Auth-Token': this.authenticationToken };
   }
 
   get(endpoint) {

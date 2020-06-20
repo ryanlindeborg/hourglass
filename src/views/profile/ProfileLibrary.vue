@@ -12,12 +12,16 @@
 <script>
 import apiClient from '../../services/apiClient';
 import ProfileCard from '../../components/profile/ProfileCard.vue';
+import { user, currentJob } from '../../services/defaultObjects';
 
 export default {
   components: { ProfileCard },
   data() {
     return {
-      profilePreviews: '',
+      profilePreviews: {
+        userJson: user,
+        currentJobJson: currentJob,
+      },
     };
   },
   created() {

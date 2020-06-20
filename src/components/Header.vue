@@ -8,6 +8,7 @@
           <router-link :to="{ name: Register }" tag="p">Register</router-link>
           <router-link :to="{ name: Login }" tag="p">Login</router-link>
         </div>
+<!--        <div v-if="!isAuthenticated">-->
         <div v-else>
           <router-link :to="{ name: 'MyCareer' }" tag="p">My Career</router-link>
           <router-link :to="{ name: 'SimilarProfiles', params: { displayName: userDisplayName }}"
@@ -25,10 +26,10 @@
 export default {
   computed: {
     isAuthenticated() {
-      return this.$store.getters.isAuthenticated;
+      return this.$store.state.isLoggedIn;
     },
     userDisplayName() {
-      return this.$store.getters.userDisplayName;
+      return this.$store.state.userDisplayName;
     },
   },
   methods: {
