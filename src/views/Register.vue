@@ -104,9 +104,10 @@ export default {
       }
     },
     isInputValid() {
-      this.$v.registrationDetails.email.touch();
-      this.$v.registrationDetails.password.touch();
-      this.$v.registrationDetails.repeatPassword.touch();
+      this.$v.$touch();
+      // this.$v.registrationDetails.email.touch();
+      // this.$v.registrationDetails.password.touch();
+      // this.$v.registrationDetails.repeatPassword.touch();
       return true;
     },
   },

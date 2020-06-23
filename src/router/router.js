@@ -10,6 +10,8 @@ import PageNotFound from '../components/PageNotFound.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 
+import store from '../store/store';
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -33,7 +35,7 @@ const routes = [
     name: 'MyCareer',
     component: MyCareer,
     beforeEnter(to, from, next) {
-      if (this.$store.state.isLoggedIn) {
+      if (store.state.isLoggedIn) {
         next();
       } else {
         next({ name: 'Login' });
@@ -45,7 +47,7 @@ const routes = [
     name: 'Search',
     component: Search,
     beforeEnter(to, from, next) {
-      if (this.$store.state.isLoggedIn) {
+      if (store.state.isLoggedIn) {
         next();
       } else {
         next({ name: 'Login' });
@@ -57,7 +59,7 @@ const routes = [
     name: 'ProfileLibrary',
     component: ProfileLibrary,
     beforeEnter(to, from, next) {
-      if (this.$store.state.isLoggedIn) {
+      if (store.state.isLoggedIn) {
         next();
       } else {
         next({ name: 'Login' });
@@ -70,7 +72,7 @@ const routes = [
     component: Profile,
     props: true,
     beforeEnter(to, from, next) {
-      if (this.$store.state.isLoggedIn) {
+      if (store.state.isLoggedIn) {
         next();
       } else {
         next({ name: 'Login' });
@@ -82,7 +84,7 @@ const routes = [
     name: 'SimilarProfiles',
     component: SimilarProfiles,
     beforeEnter(to, from, next) {
-      if (this.$store.state.isLoggedIn) {
+      if (store.state.isLoggedIn) {
         next();
       } else {
         next({ name: 'Login' });

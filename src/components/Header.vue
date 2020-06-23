@@ -5,8 +5,8 @@
       </router-link>
       <section>
         <div v-if="!isAuthenticated">
-          <router-link :to="{ name: Register }" tag="p">Register</router-link>
-          <router-link :to="{ name: Login }" tag="p">Login</router-link>
+          <router-link :to="{ name: 'Register' }" tag="p">Register</router-link>
+          <router-link :to="{ name: 'Login' }" tag="p">Login</router-link>
         </div>
 <!--        <div v-if="!isAuthenticated">-->
         <div v-else>
