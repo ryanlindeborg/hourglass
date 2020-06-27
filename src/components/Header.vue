@@ -3,6 +3,7 @@
     <nav>
       <router-link :to="{ name: 'Home' }"><img src="/images/timeline-logo.png" alt="Timeline" />
       </router-link>
+      <span v-if="userDisplayName" class="handle">@{{ userDisplayName }}</span>
       <section>
         <div v-if="!isAuthenticated">
           <router-link :to="{ name: 'Register' }" tag="p">Register</router-link>
@@ -23,6 +24,8 @@
 </template>
 
 <script>
+import userService from '../services/userService';
+
 export default {
   computed: {
     isAuthenticated() {
@@ -34,7 +37,7 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch('logout');
+      userService.logout(this.$router);
     },
   },
 };
@@ -47,4 +50,5 @@ export default {
   section { float: right; margin-right: 1em; }
   p { color: #007bff; display: inline-block; padding: 1.2em; margin: 0; }
   p:hover { cursor: pointer; color: #0056b3; background-color: #B9BAC4; }
+  span.handle { color: #057BFE; display: inline-block; vertical-align: middle; }
 </style>

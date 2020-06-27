@@ -54,6 +54,7 @@
 import {
   required, email, minLength, sameAs,
 } from 'vuelidate/lib/validators';
+import userService from '../services/userService';
 
 export default {
   data() {
@@ -100,7 +101,8 @@ export default {
   methods: {
     registerUser() {
       if (this.isInputValid()) {
-        this.$store.dispatch('registerUser', this.registrationDetails);
+        userService.registerUser(this.registrationDetails)
+          .catch((error) => console.log(error));
       }
     },
     isInputValid() {
