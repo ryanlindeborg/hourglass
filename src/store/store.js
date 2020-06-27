@@ -59,7 +59,7 @@ export default new Vuex.Store({
   },
   // actions,
   actions: {
-    registerUser(registrationDetails) {
+    registerUser(_context, registrationDetails) {
       apiClient.post('/user/registration', registrationDetails)
         .then((res) => console.log(res))
         .catch((error) => console.log(error));
