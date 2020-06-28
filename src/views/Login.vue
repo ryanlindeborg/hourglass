@@ -5,6 +5,10 @@
       <section class="flex-container">
         <div>
           <h1>Hourglass, a path towards a fulfilling career</h1>
+          <!-- TODO: Think about putting showAlert in Vuex state,
+          and making the b-alert a separate component you include -->
+          <b-alert variant="danger" v-model="showAlert" dismissible fade>
+            {{ alertMessage }}</b-alert>
           <form @submit.prevent="login">
             <div class="form-group">
               <label for="loginName">Username or Email</label>
@@ -34,13 +38,20 @@ export default {
         loginName: '',
         password: '',
       },
+      alertMessage: '',
+      showAlert: false,
     };
   },
   methods: {
     login() {
-      // TODO: Better error display to user upon failed login request
       userService.loginUser(this.loginDetails)
-        .catch((error) => console.log(`****Catching promise error: ${error.response.data.error}`));
+        .then(() => {
+          this.$router.push({ name: 'ProfileLibrary' });
+        })
+        .catch((error) => {
+          this.alertMessage = error.response.data.error;
+          this.showAlert = true;
+        });
     },
   },
 };
