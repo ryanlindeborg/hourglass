@@ -12,9 +12,7 @@ class UserService {
   // loginEndpoint = '/user/session';
 
   registerUser(registrationDetails) {
-    return apiClient.post(this.registrationEndpoint, registrationDetails)
-      .then((res) => console.log(res))
-      .catch((error) => console.log(error));
+    return apiClient.post(this.registrationEndpoint, registrationDetails);
   }
 
   loginUser(loginDetails) {
