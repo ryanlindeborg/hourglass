@@ -3,7 +3,7 @@
     <section class="body">
       <h1>Register</h1>
       <b-alert variant="danger" v-model="showAlert" dismissible fade>
-        {{ alertMessage }}</b-alert>
+        <span style="white-space: pre">{{ alertMessage }}</span></b-alert>
       <b-alert variant="success" v-model="showSuccess" dismissible fade>
         {{ successMessage }}</b-alert>
       <form @submit.prevent="registerUser">
@@ -149,18 +149,26 @@ export default {
   },
   methods: {
     registerUser() {
+      this.clearFlashMessages();
+
       if (this.isInputValid()) {
         userService.registerUser(this.registrationDetails)
           .then(() => {
             this.successMessage = `Thanks for registering, ${this.registrationDetails.firstName}!
             Log in to jumpstart your career!`;
             this.showSuccess = true;
+
             setTimeout(() => {
               this.$router.push({ name: 'Login' });
-            }, 2000);
+            }, 3000);
           })
           .catch((error) => {
-            this.alertMessage = error.response.data.error;
+            let alertMessage = '';
+            error.response.data.errors.forEach((e) => {
+              alertMessage += e;
+              alertMessage += '\n';
+            });
+            this.alertMessage = alertMessage;
             this.showAlert = true;
           });
       }
@@ -168,6 +176,12 @@ export default {
     isInputValid() {
       this.$v.$touch();
       return !this.$v.$invalid;
+    },
+    clearFlashMessages() {
+      this.successMessage = '';
+      this.showSuccess = false;
+      this.alertMessage = '';
+      this.showAlert = false;
     },
   },
 };
