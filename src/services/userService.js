@@ -7,6 +7,7 @@ class UserService {
     this.registrationEndpoint = '/user/registration';
     this.loginEndpoint = '/user/session';
     this.logoutEndpoint = '/user/token-revocation';
+    this.profileEndpoint = '/profile/user';
   }
   // registrationEndpoint = '/user/registration';
   //
@@ -36,6 +37,10 @@ class UserService {
     router.replace({ name: 'Home' });
 
     return logoutPromise;
+  }
+
+  submitProfileInfo(formData) {
+    return apiClient.post(this.profileEndpoint, formData);
   }
 }
 

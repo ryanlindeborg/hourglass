@@ -2,22 +2,11 @@
   <div>
     <section class="body">
       <h1>My Career</h1>
+      <b-alert variant="danger" v-model="showAlert" dismissible fade>
+        {{ alertMessage }}</b-alert>
+      <b-alert variant="success" v-model="showSuccess" dismissible fade>
+        {{ successMessage }}</b-alert>
       <form @submit.prevent="submitProfileInfo">
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" placeholder="Name" id="firstName" class="form-control"
-                 v-model="userJson.firstName" />
-        </div>
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input type="text" placeholder="Name" id="lastName" class="form-control"
-                 v-model="userJson.lastName" />
-        </div>
-        <div class="form-group">
-          <label for="dateOfBirth">Date of Birth</label>
-          <input type="text" placeholder="Date of Birth" id="dateOfBirth" class="form-control"
-          v-model="userJson.dateOfBirth"/>
-        </div>
         <div class="form-group">
           <label for="company">Company</label>
           <input type="text" placeholder="Company" id="company" class="form-control"
@@ -141,6 +130,7 @@
 </template>
 
 <script>
+import userService from '../services/userService';
 import apiClient from '../services/apiClient';
 import { currentJob, user } from '../services/defaultObjects';
 
@@ -188,6 +178,10 @@ export default {
       },
       industries: [],
       degrees: [],
+      successMessage: '',
+      showSuccess: false,
+      alertMessage: '',
+      showAlert: false,
     };
   },
   methods: {
@@ -201,9 +195,25 @@ export default {
         postGradSchoolUserJson: this.postGradSchoolUserJson,
       };
 
+      userService.submitProfileInfo(formData)
+        .then(() => {
+          this.successMessage = 'Profile info updated successfully';
+          this.showSuccess = true;
+        })
+        .catch((error) => {
+          this.alertMessage = error.response.data.error;
+          this.showAlert = true;
+        });
+
       apiClient.post('/profile/user', formData)
         .then((res) => console.log(res))
         .catch((error) => console.log(error));
+    },
+    clearFlashMessages() {
+      this.successMessage = '';
+      this.showSuccess = false;
+      this.alertMessage = '';
+      this.showAlert = false;
     },
   },
   created() {
