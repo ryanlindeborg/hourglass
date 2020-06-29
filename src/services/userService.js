@@ -6,6 +6,7 @@ class UserService {
   constructor() {
     this.registrationEndpoint = '/user/registration';
     this.loginEndpoint = '/user/session';
+    this.logoutEndpoint = '/user/token-revocation';
   }
   // registrationEndpoint = '/user/registration';
   //
@@ -27,13 +28,14 @@ class UserService {
   }
 
   logout(router) {
-    // TODO: Figure out how to make non-static without requiring use of this,
-    //  or else figure out how to call static method of UserService
-    console.log(`temporary: ${this.loginEndpoint}`);
-    // TODO: Invalidate JWT token
+    // TODO: Figure out how to handle front end if logout endpoint throws error back
+    const logoutPromise = apiClient.post(this.logoutEndpoint, store.state.userDisplayName);
+
     apiClient.setAuthenticationToken('');
     store.commit('clearUserSessionData');
     router.replace({ name: 'Home' });
+
+    return logoutPromise;
   }
 }
 

@@ -9,14 +9,13 @@
           <router-link :to="{ name: 'Register' }" tag="p">Register</router-link>
           <router-link :to="{ name: 'Login' }" tag="p">Login</router-link>
         </div>
-<!--        <div v-if="!isAuthenticated">-->
         <div v-else>
           <router-link :to="{ name: 'MyCareer' }" tag="p">My Career</router-link>
           <router-link :to="{ name: 'SimilarProfiles', params: { displayName: userDisplayName }}"
                        tag="p">Similar Profiles</router-link>
           <router-link :to="{ name: 'ProfileLibrary' }" tag="p">Profile Library</router-link>
           <router-link :to="{ name: 'Search' }" tag="p">Search</router-link>
-          <router-link :to="{ name: 'Login' }" tag="p">Logout</router-link>
+          <p @click="logout">Logout</p>
         </div>
       </section>
     </nav>

@@ -47,7 +47,7 @@ export default new Vuex.Store({
       state.authenticationToken = token;
     },
     clearUserSessionData: (state) => {
-      // state.authenticationToken = null;
+      state.authenticationToken = null;
       state.userDisplayName = null;
       state.isLoggedIn = false;
     },
