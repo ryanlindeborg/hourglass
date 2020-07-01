@@ -39,8 +39,12 @@ class UserService {
     return logoutPromise;
   }
 
-  submitProfileInfo(formData) {
-    return apiClient.post(this.profileEndpoint, formData);
+  submitProfileDetails(profileDetails) {
+    return apiClient.post(this.profileEndpoint, profileDetails);
+  }
+
+  getProfileDetails() {
+    return apiClient.get(`${this.profileEndpoint}/${store.state.userDisplayName}`);
   }
 }
 

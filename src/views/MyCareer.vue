@@ -10,20 +10,20 @@
         <div class="form-group">
           <label for="company">Company</label>
           <input type="text" placeholder="Company" id="company" class="form-control"
-                 v-model="currentJobJson.companyJson.name" />
+                 v-model="profileDetails.currentJobJson.companyJson.name" />
           <small id="companyHelp" class="form-text text-muted">Where do you currently work?</small>
         </div>
         <div class="form-group">
           <label for="position">Position</label>
           <input type="text" placeholder="Position" id="position" class="form-control"
-          v-model="currentJobJson.position"/>
+          v-model="profileDetails.currentJobJson.position"/>
           <small id="positionHelp" class="form-text text-muted">
             e.g., Chief Puppy Officer, Vice President of Office Snacks
           </small>
         </div>
         <div class="form-group">
           <label for="industry">Industry</label>
-          <select v-model="currentJobJson.industry" id="industry">
+          <select v-model="profileDetails.currentJobJson.industry" id="industry">
             <option></option>
             <option v-for="industry in industries" :key="industry">{{ industry }}</option>
           </select>
@@ -31,13 +31,13 @@
         <div class="form-group">
           <label for="college">College</label>
           <input type="text" placeholder="College" id="college" class="form-control"
-          v-model="collegeSchoolUserJson.schoolJson.name" />
+          v-model="profileDetails.collegeSchoolUserJson.schoolJson.name" />
           <small id="collegeHelp" class="form-text text-muted">Your proud alma mater</small>
         </div>
         <div class="form-group">
           <label for="fieldOfStudy">Field of Study</label>
           <input type="text" placeholder="Field of Study" id="fieldOfStudy" class="form-control"
-          v-model="collegeSchoolUserJson.fieldOfStudy"/>
+          v-model="profileDetails.collegeSchoolUserJson.fieldOfStudy"/>
           <small id="fieldOfStudyHelp" class="form-text text-muted">
             Your major - what are you officially a certified expert in?
           </small>
@@ -45,20 +45,21 @@
         <div class="form-group">
           <label for="yearOfGraduation">Year of Graduation</label>
           <input type="text" placeholder="Year of Graduation" id="yearOfGraduation"
-                 class="form-control" v-model="collegeSchoolUserJson.endDate" />
+                 class="form-control" v-model="profileDetails.collegeSchoolUserJson.endDate" />
           <small id="yearOfGraduationHelp" class="form-text text-muted">Only if applicable</small>
         </div>
         <div class="form-group">
           <label for="postGradSchool">Post-Grad School</label>
           <input type="text" placeholder="Post-Grad School" id="postGradSchool"
-                 class="form-control" v-model="postGradSchoolUserJson.schoolJson.name" />
+                 class="form-control"
+                 v-model="profileDetails.postGradSchoolUserJson.schoolJson.name" />
           <small id="postGradSchoolHelp" class="form-text text-muted">
             Your proud alma mater, take 2
           </small>
         </div>
         <div class="form-group">
           <label for="postGradDegree">Degree</label>
-          <select v-model="postGradSchoolUserJson.degree" id="postGradDegree">
+          <select v-model="profileDetails.postGradSchoolUserJson.degree" id="postGradDegree">
             <option></option>
             <option v-for="degree in degrees" :key="degree">{{ degree }}</option>
           </select>
@@ -69,7 +70,8 @@
         <div class="form-group">
           <label for="fieldOfStudyPostGrad">Field of Study</label>
           <input type="text" placeholder="Field of Study" id="fieldOfStudyPostGrad"
-                 class="form-control" v-model="postGradSchoolUserJson.fieldOfStudy" />
+                 class="form-control"
+                 v-model="profileDetails.postGradSchoolUserJson.fieldOfStudy" />
           <small id="fieldOfStudyPostGradHelp" class="form-text text-muted">
             What are you officially a certified expert in?
           </small>
@@ -77,7 +79,7 @@
         <div class="form-group">
           <label for="yearOfPostGradGraduation">Year of Graduation</label>
           <input type="text" placeholder="Year of Graduation" id="yearOfPostGradGraduation"
-                 class="form-control" v-model="postGradSchoolUserJson.endDate" />
+                 class="form-control" v-model="profileDetails.postGradSchoolUserJson.endDate" />
           <small id="yearOfPostGradGraduationHelp" class="form-text text-muted">
             Only if applicable
           </small>
@@ -85,7 +87,8 @@
         <div class="form-group">
           <label for="firstCompanyPostCollege">First Company Post-College</label>
           <input type="text" placeholder="First Company Post-College" id="firstCompanyPostCollege"
-                 class="form-control" v-model="firstPostCollegeJobJson.companyJson.name" />
+                 class="form-control"
+                 v-model="profileDetails.firstPostCollegeJobJson.companyJson.name" />
           <small id="firstCompanyPostCollegeHelp" class="form-text text-muted">
             Who hired you as a freshly minted grad?
           </small>
@@ -93,7 +96,7 @@
         <div class="form-group">
           <label for="firstPositionPostCollege">First Position Post-College</label>
           <input type="text" placeholder="Position" id="firstPositionPostCollege"
-                 class="form-control" v-model="firstPostCollegeJobJson.position" />
+                 class="form-control" v-model="profileDetails.firstPostCollegeJobJson.position" />
           <small id="firstPositionPostCollegeHelp" class="form-text text-muted">
             Title on your first business card
           </small>
@@ -101,7 +104,8 @@
         <div class="form-group">
           <label for="industryOfFirstCompanyPostCollege">
             Industry of First Company Post-College</label>
-          <select v-model="firstPostCollegeJobJson.industry" id="industryOfFirstCompanyPostCollege">
+          <select v-model="profileDetails.firstPostCollegeJobJson.industry"
+                  id="industryOfFirstCompanyPostCollege">
             <option></option>
             <option v-for="industry in industries" :key="industry">{{ industry }}</option>
           </select>
@@ -109,16 +113,16 @@
         <div class="form-group">
           <label for="dreamCompany">Dream Company</label>
           <input type="text" placeholder="Dream Company" id="dreamCompany" class="form-control"
-          v-model="dreamJobJson.companyJson.name" />
+          v-model="profileDetails.dreamJobJson.companyJson.name" />
         </div>
         <div class="form-group">
           <label for="dreamPosition">Dream Position</label>
           <input type="text" placeholder="Dream Position" id="dreamPosition" class="form-control"
-          v-model="dreamJobJson.position" />
+          v-model="profileDetails.dreamJobJson.position" />
         </div>
         <div class="form-group">
           <label for="dreamIndustry">Dream Industry</label>
-          <select v-model="dreamJobJson.industry" id="dreamIndustry">
+          <select v-model="profileDetails.dreamJobJson.industry" id="dreamIndustry">
               <option></option>
               <option v-for="industry in industries" :key="industry">{{ industry }}</option>
           </select>
@@ -130,6 +134,8 @@
 </template>
 
 <script>
+import moment from 'moment';
+import lodash from 'lodash';
 import userService from '../services/userService';
 import apiClient from '../services/apiClient';
 import { currentJob, user } from '../services/defaultObjects';
@@ -137,44 +143,46 @@ import { currentJob, user } from '../services/defaultObjects';
 export default {
   data() {
     return {
-      userJson: user,
-      currentJobJson: currentJob,
-      firstPostCollegeJobJson: {
-        id: null,
-        position: '',
-        industry: '',
-        companyJson: {
+      profileDetails: {
+        userJson: user,
+        currentJobJson: currentJob,
+        firstPostCollegeJobJson: {
           id: null,
-          name: '',
+          position: '',
+          industry: '',
+          companyJson: {
+            id: null,
+            name: '',
+          },
         },
-      },
-      dreamJobJson: {
-        id: null,
-        position: '',
-        industry: '',
-        companyJson: {
+        dreamJobJson: {
           id: null,
-          name: '',
+          position: '',
+          industry: '',
+          companyJson: {
+            id: null,
+            name: '',
+          },
         },
-      },
-      collegeSchoolUserJson: {
-        id: null,
-        schoolJson: {
+        collegeSchoolUserJson: {
           id: null,
-          name: '',
+          schoolJson: {
+            id: null,
+            name: '',
+          },
+          endDate: '',
+          fieldOfStudy: '',
         },
-        endDate: '',
-        fieldOfStudy: '',
-      },
-      postGradSchoolUserJson: {
-        id: null,
-        schoolJson: {
+        postGradSchoolUserJson: {
           id: null,
-          name: '',
+          schoolJson: {
+            id: null,
+            name: '',
+          },
+          endDate: '',
+          degree: '',
+          fieldOfStudy: '',
         },
-        endDate: '',
-        degree: '',
-        fieldOfStudy: '',
       },
       industries: [],
       degrees: [],
@@ -186,16 +194,17 @@ export default {
   },
   methods: {
     submitProfileInfo() {
-      const formData = {
-        userJson: this.userJson,
-        currentJobJson: this.currentJobJson,
-        firstPostCollegeJobJson: this.firstPostCollegeJobJson,
-        dreamJobJson: this.dreamJobJson,
-        collegeSchoolUserJson: this.collegeSchoolUserJson,
-        postGradSchoolUserJson: this.postGradSchoolUserJson,
-      };
+      // Deep clone the profile details so that can format the date fields
+      const profileDetailsSubmission = lodash.cloneDeep(this.profileDetails);
+      // Format dates before post the data to the backend
+      profileDetailsSubmission.collegeSchoolUserJson.endDate = moment(
+        this.profileDetails.collegeSchoolUserJson.endDate,
+      );
+      profileDetailsSubmission.postGradSchoolUserJson.endDate = moment(
+        this.profileDetails.postGradSchoolUserJson.endDate,
+      );
 
-      userService.submitProfileInfo(formData)
+      userService.submitProfileDetails(profileDetailsSubmission)
         .then(() => {
           this.successMessage = 'Profile info updated successfully';
           this.showSuccess = true;
@@ -204,10 +213,6 @@ export default {
           this.alertMessage = error.response.data.error;
           this.showAlert = true;
         });
-
-      apiClient.post('/profile/user', formData)
-        .then((res) => console.log(res))
-        .catch((error) => console.log(error));
     },
     clearFlashMessages() {
       this.successMessage = '';
@@ -215,8 +220,28 @@ export default {
       this.alertMessage = '';
       this.showAlert = false;
     },
+    formatDateToYear(date) {
+      if (date) {
+        // return moment(String(date)).format('YYYY');
+        return moment(date, 'YYYY-MM-DD').format('YYYY');
+      }
+      return '';
+    },
   },
   created() {
+    userService.getProfileDetails()
+      .then((res) => {
+        const { data } = res;
+        // Format dates to just display year
+        const collegeGradYear = this.formatDateToYear(data.collegeSchoolUserJson.endDate);
+        data.collegeSchoolUserJson.endDate = collegeGradYear;
+        const postGradYear = this.formatDateToYear(data.postGradSchoolUserJson.endDate);
+        data.postGradSchoolUserJson.endDate = postGradYear;
+
+        this.profileDetails = data;
+      })
+      .catch((error) => console.log(error));
+
     // Fetch list of industries from server-side app
     apiClient.get('/company/industries')
       .then((res) => {
