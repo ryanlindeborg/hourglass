@@ -19,6 +19,7 @@ class ApiClient {
   getRequestConfig() {
     return {
       headers: this.getRequestHeaders(),
+      withCredentials: true,
     };
   }
 

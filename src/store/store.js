@@ -46,6 +46,10 @@ export default new Vuex.Store({
       state.isLoggedIn = true;
       state.authenticationToken = token;
     },
+    loginOAuthUser: (state) => {
+      state.isLoggedIn = true;
+      // For OAuth users, rely on JWT in the Http cookie.
+    },
     clearUserSessionData: (state) => {
       state.authenticationToken = null;
       state.userDisplayName = null;

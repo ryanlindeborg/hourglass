@@ -28,6 +28,25 @@ class UserService {
       });
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  loginOAuthUser() {
+    const loginUrl = `${process.env.VUE_APP_BASE_SPRING_API_URL}/oauth2/authorization/github`;
+    const authWindow = window.open(loginUrl, '_blank', 'location=yes,height=600,width=600');
+    return new Promise((resolve) => {
+      const oauthFinishedMessageHandler = (event) => {
+        if (event.origin === `${process.env.VUE_APP_BASE_SPRING_API_URL}` && event.data
+          && event.data.oauthCompleted === true) {
+          authWindow.close();
+          window.removeEventListener('message', oauthFinishedMessageHandler.bind(this));
+          store.commit('loginOAuthUser');
+          resolve();
+        }
+      };
+
+      window.addEventListener('message', oauthFinishedMessageHandler);
+    });
+  }
+
   logout(router) {
     // TODO: Figure out how to handle front end if logout endpoint throws error back
     const logoutPromise = apiClient.post(this.logoutEndpoint, store.state.userDisplayName);

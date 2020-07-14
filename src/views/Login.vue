@@ -23,6 +23,9 @@
             <button type="submit" class="btn btn-primary">Login</button>
           </form>
         </div>
+        <div>
+          <button @click="oauthLogin">Login with GitHub</button>
+        </div>
       </section>
     </section>
   </div>
@@ -51,6 +54,12 @@ export default {
         .catch((error) => {
           this.alertMessage = error.response.data.error;
           this.showAlert = true;
+        });
+    },
+    oauthLogin() {
+      userService.loginOAuthUser()
+        .then(() => {
+          this.$router.push({ name: 'ProfileLibrary' });
         });
     },
   },
